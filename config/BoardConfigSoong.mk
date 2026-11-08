@@ -22,6 +22,9 @@ EXPORT_TO_SOONG := \
 $(call add_soong_config_namespace,lineageVarsPlugin)
 $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,lineageVarsPlugin,$(v))))
 
+# Optional compatibility setting. Unset on Tokay to retain its shipping API level.
+$(call soong_config_set_bool,lineageGlobalVars,spoof_first_api_level_32,$(SPOOF_FIRST_API_LEVEL_32))
+
 # Bootanimation
 TARGET_BOOTANIMATION_HALF_RES ?= false
 $(call soong_config_set,lineage_bootanimation,height,$(TARGET_SCREEN_HEIGHT))
